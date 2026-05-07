@@ -1,0 +1,10 @@
+# Node
+backend/node_modules/
+backend/.env
+
+# IntelliJ
+.idea/
+
+# Sistema
+.DS_Store
+Thumbs.db

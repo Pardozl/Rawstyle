@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Producto — Rawstyle</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .talla-btn { transition: all 0.15s; }
+        .talla-btn.selected {
+            background: #000;
+            color: #fff;
+            border-color: #000;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+<nav class="bg-white border-b border-gray-200 sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+        <a href="../index.html" class="text-2xl font-bold tracking-tight">RAWSTYLE</a>
+        <div class="flex items-center gap-4" id="nav-acciones"></div>
+    </div>
+</nav>
+
+<div class="max-w-6xl mx-auto px-4 py-4">
+    <div class="flex items-center gap-2 text-sm text-gray-400">
+        <a href="../index.html" class="hover:text-black transition-colors">Inicio</a>
+        <span>/</span>
+        <span id="bread-categoria">Productos</span>
+        <span>/</span>
+        <span id="bread-nombre" class="text-gray-700">Cargando...</span>
+    </div>
+</div>
+
+<main class="max-w-6xl mx-auto px-4 pb-16">
+    <div id="loading" class="text-center py-20 text-gray-400">Cargando producto...</div>
+    <div id="no-encontrado" class="hidden text-center py-20">
+        <p class="text-gray-400 text-lg mb-4">Producto no encontrado</p>
+        <a href="../index.html"
+           class="bg-black text-white px-6 py-2.5 rounded-lg font-medium hover:bg-gray-800 transition-colors">
+            Volver al catálogo
+        </a>
+    </div>
+
+    <div id="producto-contenido" class="hidden grid grid-cols-1 md:grid-cols-2 gap-12">
+
+        <div class="aspect-square bg-gray-100 rounded-2xl overflow-hidden">
+            <img id="prod-imagen" src="" alt=""
+                 class="w-full h-full object-cover"/>
+        </div>
+
+        <div class="flex flex-col justify-center">
+        <span id="prod-categoria"
+              class="text-sm text-gray-400 uppercase tracking-wide font-medium mb-2"></span>
+            <h1 id="prod-nombre" class="text-3xl font-bold text-gray-900 mb-3"></h1>
+            <p id="prod-descripcion" class="text-gray-500 leading-relaxed mb-6"></p>
+
+            <div class="text-3xl font-bold mb-6" id="prod-precio"></div>
+
+            <div id="seccion-tallas" class="hidden mb-6">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-sm font-medium text-gray-700">Talla</span>
+                    <span id="talla-seleccionada" class="text-sm text-gray-400"></span>
+                </div>
+                <div class="flex flex-wrap gap-2" id="tallas-container"></div>
+                <p id="error-talla" class="hidden text-red-500 text-sm mt-2">
+                    Por favor selecciona una talla.
+                </p>
+            </div>
+
+            <div class="flex items-center gap-2 mb-6">
+                <div id="stock-dot" class="w-2 h-2 rounded-full bg-green-500"></div>
+                <span id="prod-stock" class="text-sm text-gray-600"></span>
+            </div>
+
+            <div class="flex items-center gap-4 mb-6">
+                <span class="text-sm font-medium text-gray-700">Cantidad</span>
+                <div class="flex items-center border border-gray-200 rounded-lg overflow-hidden">
+                    <button onclick="cambiarCantidad(-1)"
+                            class="px-4 py-2 text-gray-600 hover:bg-gray-100 transition-colors font-medium">−</button>
+                    <span id="cantidad-display"
+                          class="px-4 py-2 text-sm font-medium border-x border-gray-200">1</span>
+                    <button onclick="cambiarCantidad(1)"
+                            class="px-4 py-2 text-gray-600 hover:bg-gray-100 transition-colors font-medium">+</button>
+                </div>
+            </div>
+
+            <div class="flex gap-3">
+                <button onclick="agregarAlCarrito()" id="btn-agregar"
+                        class="flex-1 bg-black text-white py-3 rounded-xl font-semibold
+                   hover:bg-gray-800 transition-colors text-sm">
+                    Agregar al carrito
+                </button>
+                <a href="../index.html"
+                   class="px-5 py-3 border border-gray-200 rounded-xl text-sm font-medium
+                   text-gray-600 hover:bg-gray-50 transition-colors">
+                    Volver
+                </a>
+            </div>
+
+            <div id="toast-prod"
+                 class="hidden mt-4 bg-green-50 border border-green-200 text-green-700
+                 rounded-xl px-4 py-3 text-sm text-center">
+            </div>
+        </div>
+    </div>
+</main>
+
+<script src="../js/api.js"></script>
+<script src="../js/producto.js"></script>
+
+</body>
+</html>
